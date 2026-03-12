@@ -1,51 +1,37 @@
 @import "tailwindcss";
 
-@import '@fontsource/poppins/400.css';
-@import '@fontsource/poppins/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
+@import '@fontsource/jetbrains-mono/400.css';
 
 @layer base {
   html, body {
-    background-color: #0f172a;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  :root {
-    font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: #09090b;
+    color: #e4e4e7;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
   }
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* bg meshes for depth */
+.bg-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.05) 0px, transparent 50%);
 }
 
-@keyframes spin-reverse-slow {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+/* premium glass effects */
+.glass-panel {
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.animate-spin-slow {
-  animation: spin-slow 60s linear infinite;
-}
-
-.animate-spin-reverse-slow {
-  animation: spin-reverse-slow 80s linear infinite;
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.glass-strong {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.glass-nav {
+  background: rgba(9, 9, 11, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }

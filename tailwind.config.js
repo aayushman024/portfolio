@@ -7,8 +7,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
+      colors: {
+        base: '#09090b', // zinc-950
+        surface: '#18181b', // zinc-900
+        primary: '#06b6d4', // cyan-500
+        accent: '#6366f1', // indigo-500
+      }
     },
   },
   plugins: [],
