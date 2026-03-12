@@ -114,7 +114,7 @@ const Portfolio = () => {
       linkedin: "https://linkedin.com/in/aayushmanranjan",
       github: "https://github.com/aayushman024",
       figma: "https://www.figma.com/design/vjWil3kZIgbbUQDqpHB2qy/UI-UX-Samples",
-      resume: "#"
+      resume: "https://drive.google.com/file/d/1yUKk_ePWdzJ5VtR1y6sLJPE2qBsJp95d/view?usp=sharing"
     }
   };
 
@@ -321,7 +321,7 @@ const Portfolio = () => {
           <div className="flex items-center justify-between">
             <button onClick={() => scrollToSection('hero')} className="flex items-center gap-3 group relative">
               <div className="absolute inset-0 bg-zinc-200 blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
-              <img src={logo} alt="Logo" className="w-10 h-10 rounded-full border border-zinc-700/50 group-hover:border-zinc-500/80 transition-all duration-300 relative z-10" />
+              <img src={logo} alt="Logo" loading="lazy" className="w-10 h-10 rounded-full border border-zinc-700/50 group-hover:border-zinc-500/80 transition-all duration-300 relative z-10" />
               <span className="font-extrabold text-xl tracking-tighter text-zinc-100 group-hover:text-zinc-100 transition-colors">
                 <span className="text-zinc-100">A</span>R.
               </span>
@@ -351,8 +351,30 @@ const Portfolio = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden text-zinc-300 hover:text-zinc-100 transition-colors"
             >
-              <Menu size={28} />
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        <div className={`md:hidden absolute top-full left-0 w-full bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[400px] py-6 opacity-100' : 'max-h-0 py-0 opacity-0'}`}>
+          <div className="flex flex-col items-center gap-6 font-mono text-sm font-medium">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`transition-all duration-300 hover:text-zinc-300 ${activeSection === item.id ? 'text-zinc-100' : 'text-zinc-400'}`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <a
+              href={personalInfo.socialLinks.resume}
+              target="_blank" rel="noreferrer"
+              className="mt-2 px-6 py-2 border border-white/10 text-zinc-100 rounded hover:bg-zinc-100/10 hover:border-zinc-500 transition-all duration-300"
+            >
+              Resume
+            </a>
           </div>
         </div>
       </nav>
@@ -360,11 +382,11 @@ const Portfolio = () => {
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center pt-20 px-6 max-w-6xl mx-auto relative z-10 w-full">
         <RevealOnScroll>
-          <div className="w-full flex flex-col">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-zinc-100 tracking-tighter mb-8 lg:mb-10 pl-4 md:pl-0">
+          <div className="w-full flex flex-col mt-16 lg:mt-0">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-zinc-100 tracking-tighter mb-8 lg:mb-10 pl-4 md:pl-0 pt-12 lg:pt-0">
               Hi, I'm {personalInfo.name}.
             </h1>
-            
+
             <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-stretch w-full">
               <div className="lg:col-span-7 relative flex flex-col">
                 <div className="bg-[#111113]/60 p-8 md:p-12 rounded-3xl border border-white/[0.04] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03),0_8px_32px_rgba(0,0,0,0.6)] backdrop-blur-xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500 h-full flex flex-col justify-center">
@@ -408,16 +430,17 @@ const Portfolio = () => {
               {/* Right side image - Hidden on smaller screens but clearly visible on large screens */}
               <div className="lg:col-span-5 hidden lg:flex justify-center items-stretch relative">
                 <div className="relative w-full h-full bg-[#111113]/60 rounded-3xl border border-white/[0.04] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03),0_8px_32px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden pt-12 px-6 flex justify-center items-end group hover:border-white/10 transition-colors duration-500">
-                  
+
                   {/* Optional: subtle ambient inner shine */}
                   <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
                   {/* ambient background glow specifically for the image */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-indigo-500/20 blur-[60px] rounded-full pointer-events-none"></div>
 
-                  <img 
-                    src={me} 
-                    alt="Aayushman Ranjan" 
+                  <img
+                    src={me}
+                    alt="Aayushman Ranjan"
+                    loading="lazy"
                     className="relative z-10 w-full max-w-[320px] h-auto object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] opacity-90 group-hover:opacity-100 transition-all duration-500 origin-bottom group-hover:scale-[1.02]"
                   />
                 </div>
@@ -455,7 +478,7 @@ const Portfolio = () => {
 
                       <div className="flex items-center gap-4 mb-2">
                         {exp.logo && (
-                          <img src={exp.logo} alt={exp.company} className="w-10 h-10 rounded-full border border-zinc-700 object-cover" />
+                          <img src={exp.logo} alt={exp.company} loading="lazy" className="w-10 h-10 rounded-full border border-zinc-700 object-cover" />
                         )}
                         <h3 className="text-xl font-bold text-zinc-200">
                           {exp.position} <span className="text-zinc-100">@ {exp.company}</span>
@@ -600,7 +623,7 @@ const Portfolio = () => {
               <div className="bg-[#111113] p-6 rounded-2xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col group border border-white/[0.04] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03),0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.06),0_8px_30px_rgba(0,0,0,0.8)] hover:border-white/10">
                 <div className="flex items-center gap-4 mb-6">
                   {edu.logo ? (
-                    <img src={edu.logo} alt={edu.institution} className="w-12 h-12 rounded-full border border-zinc-700 bg-zinc-900 object-contain p-1" />
+                    <img src={edu.logo} alt={edu.institution} loading="lazy" className="w-12 h-12 rounded-full border border-zinc-700 bg-zinc-900 object-contain p-1" />
                   ) : (
                     <div className="p-3 bg-white/5 rounded-full group-hover:bg-zinc-100/10 transition-colors border border-white/5">
                       <GraduationCap className="text-zinc-100" size={24} />
